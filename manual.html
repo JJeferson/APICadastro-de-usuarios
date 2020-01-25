@@ -1,0 +1,72 @@
+<meta name="description" 
+    content="Manual da API">
+    <!-- Meta acima serve para facilitar pesquisa do google -->
+  
+  </head> 
+
+
+
+  <body>
+  
+  
+<h1 style="text-align: left; padding-left: 35%;" >Manual de uso da API</h1> </br></br>
+<div style="text-align: left; padding-left: 35%;">
+  -Todos os campos são de preenchimento obrigatório</br>
+  -Campos EMAIL, CPF, RG são UNIQUE, portanto não podem repetir.</br>
+  -Para maior liberdade de alterações todos campos são CHAR no MySQL    </br>     
+  ------------------------------------------------------</br>
+   Esta é uma API modelo para testes criada por Jeferson dos Santos.</br>
+   Serve apenas para modelo de testes de consumo.</br>
+   Aqui você pode baixar o <a href="https://www.getpostman.com/downloads/">PostMan</a href>  para realizar testes.</br>
+  ------------------------------------------------------</br>
+  Metodo post / Inserção:</br>
+</br>
+       { </br>
+      "tipo_usuario" : "Administrador",   </br>
+      "usuario"      : "teste",           </br>
+      "email"        : "teste@teste.com", </br>
+      "senha"        : "123",             </br>
+      "rg"           : "123321456",       </br>
+      "cpf"          : "00642057036",     </br>
+      "endereco"     : "rua teste ",      </br>
+      "estado"       : "RS",              </br>
+      "pais"         : "BR",              </br>
+      "cep"          : "93600000",        </br>
+      "fone"         : "1232"             </br>
+      }                                   </br></br>
+      
+  ------------------------------------------------------ </br>
+  Metodo GET / Listagem:                                 </br>
+  http://api.cc10.site/usuarios                          </br></br>
+  
+  ------------------------------------------------------ </br>
+  Metodo GET / Lista um:                                 </br>
+  http://api.cc10.site/usuarios/id_usuario               </br></br>
+  
+  ------------------------------------------------------ </br>
+  Metodo DELETE / Apaga um usuario:                      </br>
+      {                                                  </br>
+      "id_usuario" : "numero do id"                      </br>
+      }                                                  </br>
+  ------------------------------------------------------ </br>
+  Metodo PATCH / Alteração:                              </br>
+                                                         </br>
+       {                                                 </br>
+      "id_usuario"   : "Id do usuario",                  </br>
+      "tipo_usuario" : "Adm",                            </br>
+      "usuario"      : "bip bip",                        </br>
+      "email"        : "9teste@teste.com",               </br>
+      "senha"        : "123",                            </br>
+      "rg"           : "123321456000",                   </br>
+      "cpf"          : "00642057036000",                 </br>
+      "endereco"     : "rua teste ",                     </br>
+      "estado"       : "RS",                             </br>
+      "pais"         : "BR",                             </br>
+      "cep"          : "93600000",                       </br>
+      "fone"         : "1232"                            </br>
+      }                                                  </br></br>
+  
+  ------------------------------------------------------ </br>
+</div>
+</body>
+</html>
