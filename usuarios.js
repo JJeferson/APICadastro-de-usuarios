@@ -5,24 +5,19 @@ const mysql   = require('../mysql').pool;
 //----------------------------------------------------------------------------------------------------
 //Lista
 router.get('/',(req, res, next) => {
-    /*
-      res.status(200).send({
-            mensagem:'rota pedidos respondendo o GET  '
-
-     });
-     */
+    
 
     mysql.getConnection((error,conn) =>{
       if (error) {return res.status(500).send({error:error})}
-         
+       conn.release();
          conn.query(
               'select * from usuarios',
               (error,resultado,fields) =>{
                  
                  if (error) {return res.status(500).send({error:error})}
               
-                  return res.status(200).send({response: resultado})
-  
+                  return res.status(200).send(resultado)
+                  conn.release();
               }
   
          )
@@ -39,7 +34,7 @@ router.get('/:id_usuario',(req, res, next) => {
  
   mysql.getConnection((error,conn) =>{
   if (error) {return res.status(500).send({error:error})}
-     
+  conn.release();
      conn.query(
           'select * from usuarios where id_usuario= ?; ',
           [req.params.id_usuario],
@@ -47,7 +42,8 @@ router.get('/:id_usuario',(req, res, next) => {
              
              if (error) {return res.status(500).send({error:error})}
           
-              return res.status(200).send({response: resultado})
+              return res.status(200).send(resultado)
+              conn.release();
   
           }
   
@@ -112,6 +108,7 @@ router.post('/',(req, res, next) => {
                          });  
                          
                      }
+                     conn.release();
    
                      res.status(201).send({
                            mensagem:'Insere Usuarios: ',
@@ -119,7 +116,7 @@ router.post('/',(req, res, next) => {
                            pedidoCriado: pedidos
    
                      });
-   
+                     conn.release();
               }
             
            )
@@ -174,12 +171,13 @@ router.patch('/',(req, res, next) => {
                     });  
                     
                 }
-  
+                conn.release();
                 res.status(201).send({
                       mensagem:'Usuario alterado'
                      
   
                 });
+                conn.release();
   
          }
        
@@ -210,14 +208,12 @@ router.delete('/',(req, res, next) => {
   
                     });  
                     
-                }
-  
+                } 
                 res.status(201).send({
                       mensagem:'Usuario Apagado'
                      
   
-                });
-  
+                }); 
          }
        
       )
